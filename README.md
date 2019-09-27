@@ -1,0 +1,2 @@
+# Dictionary
+Simple Android Dictionary
