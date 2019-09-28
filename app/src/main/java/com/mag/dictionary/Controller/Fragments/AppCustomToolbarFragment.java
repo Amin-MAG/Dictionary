@@ -18,15 +18,22 @@ import com.mag.dictionary.R;
 public class AppCustomToolbarFragment extends Fragment {
 
 
+    public static AppCustomToolbarFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        AppCustomToolbarFragment fragment = new AppCustomToolbarFragment();
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+    
     public AppCustomToolbarFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_app_custom_toolbar, container, false);
     }
 

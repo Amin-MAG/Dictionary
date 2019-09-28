@@ -18,8 +18,17 @@ import com.mag.dictionary.R;
 public class SettingFragment extends Fragment {
 
 
+    public static SettingFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        SettingFragment fragment = new SettingFragment();
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+
     public SettingFragment() {
-        // Required empty public constructor
     }
 
 

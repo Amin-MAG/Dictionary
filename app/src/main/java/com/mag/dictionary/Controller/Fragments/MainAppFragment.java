@@ -17,16 +17,22 @@ import com.mag.dictionary.R;
  */
 public class MainAppFragment extends Fragment {
 
+    public static MainAppFragment newInstance() {
+
+        Bundle args = new Bundle();
+
+        MainAppFragment fragment = new MainAppFragment();
+        fragment.setArguments(args);
+
+        return fragment;
+    }
 
     public MainAppFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main_app, container, false);
     }
 

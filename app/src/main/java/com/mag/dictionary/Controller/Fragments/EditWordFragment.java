@@ -1,4 +1,8 @@
 package com.mag.dictionary.Controller.Fragments;
 
-public class EditWordFragment {
+import androidx.fragment.app.DialogFragment;
+
+public class EditWordFragment extends DialogFragment {
+
+
 }
