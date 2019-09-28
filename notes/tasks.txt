@@ -1,0 +1,43 @@
+*Design:
+
+	Activities:
+		[+] MainApp
+		[+] Settings
+		
+	Fragments:
+		[+] MainApp
+		[+]	WordList (Recycler)
+		[+] Settings
+		
+	PopUp Fragments:
+		[+] AddWord
+		[+] EditWord
+		
+	Layouts:
+		[+] WordItem
+		[+] AppCustomToolbar
+		
+	Menu:
+		[+] Settings
+		[+] Exit
+	
+*Database:
+
+	[+] Schema
+	[+]	OpenHelper
+	[+]	Update the Repository
+	
+	
+*Adapter:
+
+	[+]WordListAdapter
+
+	
+*Exceptions:
+
+	[+] EmptyFieldException
+	
+*Model:
+	
+	[+] Word
+	[+] Repository
