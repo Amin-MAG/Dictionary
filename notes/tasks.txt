@@ -8,6 +8,7 @@
 		[+] MainApp
 		[+]	WordList (Recycler)
 		[+] Settings
+		[+] AppCustomToolbar
 		
 	PopUp Fragments:
 		[+] AddWord
@@ -15,7 +16,6 @@
 		
 	Layouts:
 		[+] WordItem
-		[+] AppCustomToolbar
 		
 	Menu:
 		[+] Settings
