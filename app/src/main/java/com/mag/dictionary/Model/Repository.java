@@ -3,6 +3,7 @@ package com.mag.dictionary.Model;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Repository {
@@ -28,19 +29,19 @@ public class Repository {
 
     // Word Management
 
-    private HashMap<String, String> data;
+    private ArrayList<BiWord> data;
 
-    public HashMap<String, String> getData() {
-        HashMap<String,String> data = new HashMap<>();
+    public ArrayList<BiWord> getData() {
+        data = new ArrayList<>();
 
-        data.put("car", "ماشین");
-        data.put("wash", "شستن");
-        data.put("buy", "خریدن");
-        data.put("sell", "فروختن");
-        data.put("cry", "گریه کردن");
-        data.put("love", "دوست داشتن");
-        data.put("school", "مدرسه");
-        data.put("radio", "رادیو");
+        data.add(new BiWord("car", "ماشین"));
+        data.add(new BiWord("wash", "شستن"));
+        data.add(new BiWord("buy", "خریدن"));
+        data.add(new BiWord("sell", "فروختن"));
+        data.add(new BiWord("cry", "گریه کردن"));
+        data.add(new BiWord("love", "دوست داشتن"));
+        data.add(new BiWord("school", "مدرسه"));
+        data.add(new BiWord("radio", "رادیو"));
 
         return data;
     }

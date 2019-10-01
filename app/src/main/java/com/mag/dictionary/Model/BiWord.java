@@ -7,6 +7,11 @@ public class BiWord {
     private String secondWord;
 
 
+    public BiWord(String firstWord, String secondWord) {
+        this.firstWord = firstWord;
+        this.secondWord = secondWord;
+    }
+
     public BiWord(int wordId, String firstWord, String secondWord) {
         this.wordId = wordId;
         this.firstWord = firstWord;
