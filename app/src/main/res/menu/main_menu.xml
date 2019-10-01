@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <item android:id="@+id/mainMenu_search"
+    <item android:id="@+id/mainMenu_add"
         android:icon="@drawable/ic_add"
         android:title="@string/add"
         app:showAsAction="ifRoom"/>
@@ -13,7 +13,7 @@
 <!--        android:title="@string/delete"-->
 <!--        app:showAsAction="ifRoom"/>-->
 
-    <item android:id="@+id/mainMenu_logout"
+    <item android:id="@+id/mainMenu_exit"
         android:icon="@drawable/ic_close"
         android:title="@string/exit"
         app:showAsAction="never"/>

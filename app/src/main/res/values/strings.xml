@@ -5,6 +5,7 @@
     <string name="items">10 item(s)</string>
     <string name="exit">exit</string>
     <string name="add">add</string>
+    <string name="add_word">Add Word</string>
 
 
 </resources>
