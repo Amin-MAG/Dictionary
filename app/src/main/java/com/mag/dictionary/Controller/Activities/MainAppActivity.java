@@ -14,9 +14,20 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.mag.dictionary.Controller.Fragments.WordListFragment;
 import com.mag.dictionary.R;
 
-public class MainAppActivity extends AppCompatActivity {
+public class MainAppActivity extends SingleFragmentActivity {
+
+    @Override
+    public Fragment getFragment() {
+        return WordListFragment.newInstance();
+    }
+
+    @Override
+    public String getTagName() {
+        return "tag_word_list_fragment";
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
