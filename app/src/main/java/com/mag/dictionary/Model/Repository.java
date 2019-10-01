@@ -24,6 +24,6 @@ public class Repository {
         this.context = context.getApplicationContext();
     }
 
-    //
+    // Word Management
 
 }
