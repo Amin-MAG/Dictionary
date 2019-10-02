@@ -55,23 +55,25 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addTaskFragment_cancel"
-        android:layout_width="96dp"
+        android:layout_width="130dp"
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:text="@android:string/cancel"
         android:textSize="10dp"
         app:backgroundTint="@color/colorPrimary"
+        app:icon="@drawable/ic_cancel"
         app:layout_constraintStart_toStartOf="@+id/addWordFragment_faTextLayout"
         app:layout_constraintTop_toBottomOf="@+id/addWordFragment_faTextLayout" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/addTaskFragment_create"
-        android:layout_width="96dp"
+        android:layout_width="130dp"
         android:layout_height="48dp"
         android:layout_marginTop="32dp"
         android:text="@string/add"
         android:textSize="10dp"
         app:backgroundTint="@color/colorPrimary"
+        app:icon="@drawable/ic_add"
         app:layout_constraintEnd_toEndOf="@+id/addWordFragment_faTextLayout"
         app:layout_constraintTop_toBottomOf="@+id/addWordFragment_faTextLayout" />
 

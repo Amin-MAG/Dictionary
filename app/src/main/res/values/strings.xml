@@ -12,5 +12,6 @@
     <string name="delete">Delete</string>
     <string name="successfully_edited">Successfully Edited</string>
     <string name="successfully_deleted">Successfully Deleted</string>
+    <string name="share">Share</string>
 
 </resources>
