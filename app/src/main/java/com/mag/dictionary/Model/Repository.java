@@ -43,8 +43,11 @@ public class Repository {
 
     }
 
+    public void deleteWord(int wordId) {
+        database.delete(DictionaryDBSchema.Word.NAME, DictionaryDBSchema.Word.Cols._ID + " = ? ", new String[]{String.valueOf(wordId)});
+    }
 
-    public void updateTaskForUser(Word selectedWord) {
+    public void updateWord(Word selectedWord) {
         database.update(DictionaryDBSchema.Word.NAME, getContentValues(selectedWord), DictionaryDBSchema.Word.Cols._ID + " = ?", new String[]{String.valueOf(selectedWord.getWordId())});
     }
 
@@ -116,5 +119,6 @@ public class Repository {
 
         return contentValues;
     }
+
 
 }

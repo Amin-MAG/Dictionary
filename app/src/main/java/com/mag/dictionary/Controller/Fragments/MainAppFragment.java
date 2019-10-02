@@ -34,12 +34,11 @@ public class MainAppFragment extends Fragment {
     private static final int REQUEST_CODE_FOR_ADD_WORD = 1001;
     public static final String DIALOG_ERROR = "dialog_error";
     public static final String HAS_ERROR = "has_error";
-    public static final String TAG_MAIN_WORD_FRAGMENT = "tag_main_word_fragment";
     private static final int REQUEST_CODE_FOR_EDIT_WORD = 1002;
     private static final String EDIT_WORD_FRAGMENT = "edit_word_fragment";
-    private static final String ARG_WORD = "arg_word";
     private static final String EDIT_WORD = "edit_word";
     private static final String ACTION_STRING = "action_string";
+    private static final String DELETE_WORD = "delete_word";
 
     private RecyclerView wordRecycler;
     private WordListRecycleAdapter adapter;
@@ -109,8 +108,18 @@ public class MainAppFragment extends Fragment {
                         // Update
                         adapter.update();
 
-                        // Show snackbar
-                        UiUtil.showSnackbar(wordRecycler, getResources().getString(R.string.successfully_edited), getResources().getString(R.color.app_green_dark));
+                        switch (data.getStringExtra(ACTION_STRING)) {
+                            case DELETE_WORD:
+                                if (wordRecycler != null)
+                                    UiUtil.showSnackbar(wordRecycler, getResources().getString(R.string.successfully_deleted), getResources().getString(R.color.app_green_dark));
+                                break;
+                            case EDIT_WORD:
+                                if (wordRecycler != null)
+                                    UiUtil.showSnackbar(wordRecycler, getResources().getString(R.string.successfully_edited), getResources().getString(R.color.app_green_dark));
+                                break;
+                            default:
+                                break;
+                        }
 
                     }
 

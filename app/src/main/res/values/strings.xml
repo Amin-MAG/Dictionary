@@ -9,6 +9,8 @@
     <string name="successfully_added">Successfully Added</string>
     <string name="edit_word">Edit Word</string>
     <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
     <string name="successfully_edited">Successfully Edited</string>
+    <string name="successfully_deleted">Successfully Deleted</string>
 
 </resources>

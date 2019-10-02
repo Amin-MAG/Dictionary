@@ -34,10 +34,11 @@ public class EditWordFragment extends DialogFragment {
     private static final String HAS_ERROR = "has_error";
     private static final String EDIT_WORD = "edit_word";
     private static final String ACTION_STRING = "action_string";
+    private static final String DELETE_WORD = "delete_word";
 
 
     private TextInputEditText enWord, faWord;
-    private MaterialButton edit, cancel;
+    private MaterialButton edit, cancel, delete;
 
 
     private Word selectedWord;
@@ -104,6 +105,7 @@ public class EditWordFragment extends DialogFragment {
     private void findItems(View view) {
         edit = view.findViewById(R.id.editTaskFragment_edit);
         cancel = view.findViewById(R.id.editTaskFragment_cancel);
+        delete = view.findViewById(R.id.editTaskFragment_delete);
         enWord = view.findViewById(R.id.editWordFragment_enText);
         faWord = view.findViewById(R.id.editWordFragment_faText);
     }
@@ -133,7 +135,7 @@ public class EditWordFragment extends DialogFragment {
                     selectedWord.setEnWord(enString);
                     selectedWord.setFaWord(faString);
 
-                    Repository.getInstance(getContext()).updateTaskForUser(selectedWord);
+                    Repository.getInstance(getContext()).updateWord(selectedWord);
 
                 } catch (EmptyFieldException e) {
                     intent.putExtra(DIALOG_ERROR, e.getMessage());
@@ -143,6 +145,19 @@ public class EditWordFragment extends DialogFragment {
                     fragment.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);
                     dismiss();
                 }
+
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Repository.getInstance(getContext()).deleteWord(selectedWord.getWordId());
+                intent.putExtra(ACTION_STRING, DELETE_WORD);
+                intent.putExtra(HAS_ERROR, 0);
+                fragment.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);
+                dismiss();
 
             }
         });
