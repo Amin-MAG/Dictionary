@@ -5,11 +5,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,7 @@ public class MainAppFragment extends Fragment {
     private static final int REQUEST_CODE_FOR_ADD_WORD = 1001;
     public static final String DIALOG_ERROR = "dialog_error";
     public static final String HAS_ERROR = "has_error";
+    public static final String TAG_MAIN_WORD_FRAGMENT = "tag_main_word_fragment";
 
     private RecyclerView wordRecycler;
     private WordListRecycleAdapter adapter;
@@ -91,8 +93,31 @@ public class MainAppFragment extends Fragment {
         mainLayout = view.findViewById(R.id.mainAppFragment_mainLayout);
 
         searchText.requestFocus();
+        searchText.addTextChangedListener(new TextWatcher() {
 
-        adapter = new WordListRecycleAdapter(Repository.getInstance(getContext()).getData());
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                adapter.update();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+
+        });
+
+
+        adapter = new WordListRecycleAdapter(Repository.getInstance(getContext()).getData(), new WordListRecycleAdapter.WordListCallBack() {
+            @Override
+            public String getSearchText() {
+                return searchText.getText().toString();
+            }
+        });
         wordRecycler.setAdapter(adapter);
 
     }

@@ -22,9 +22,11 @@ public class WordListRecycleAdapter extends RecyclerView.Adapter<WordListRecycle
 
     private Activity activity;
     private List<Word> words;
+    private WordListCallBack callBack;
 
-    public WordListRecycleAdapter(List<Word> words) {
+    public WordListRecycleAdapter(List<Word> words, WordListCallBack callBack) {
         this.words = words;
+        this.callBack = callBack;
     }
 
     @NonNull
@@ -49,9 +51,14 @@ public class WordListRecycleAdapter extends RecyclerView.Adapter<WordListRecycle
     }
 
     public void update() {
-        words = Repository.getInstance(activity).getData();
+        String searchText = callBack.getSearchText();
+        if (searchText.length() >= 1) {
+            words = Repository.getInstance(activity).getData(searchText);
+        } else {
+            words = Repository.getInstance(activity).getData();
+        }
         notifyDataSetChanged();
-        ((MainAppActivity)activity).updateToolbarWordCount();
+        ((MainAppActivity) activity).updateToolbarWordCount();
     }
 
 
@@ -72,6 +79,10 @@ public class WordListRecycleAdapter extends RecyclerView.Adapter<WordListRecycle
             translatedWordText.setText(word.getFaWord());
         }
 
+    }
+
+    public interface WordListCallBack {
+        String getSearchText();
     }
 
 }

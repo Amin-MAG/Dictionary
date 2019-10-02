@@ -29,8 +29,8 @@ public class Repository {
     private SQLiteDatabase database;
     private Context context;
 
-    private Repository (Context context) {
-        this.database= new DictionaryOpenHelper(context).getWritableDatabase();
+    private Repository(Context context) {
+        this.database = new DictionaryOpenHelper(context).getWritableDatabase();
         this.context = context.getApplicationContext();
     }
 
@@ -45,10 +45,42 @@ public class Repository {
 
     }
 
+    public ArrayList<Word> getData(String searchText) {
+        data = new ArrayList<>();
+
+        Cursor cursor = database.query(DictionaryDBSchema.Word.NAME, null,
+                DictionaryDBSchema.Word.Cols.EN_WORD + " LIKE \"" + searchText + "%\" OR " + DictionaryDBSchema.Word.Cols.FA_WORD + " LIKE \"" + searchText + "%\"",
+                null, null, null, null);
+        WordDBCursorWrapper cursorWrapper = new WordDBCursorWrapper(cursor);
+
+        Log.d("SpecialLog", DictionaryDBSchema.Word.Cols.EN_WORD + " LIKE \"%" + searchText + "\" OR " + DictionaryDBSchema.Word.Cols.FA_WORD + " LIKE \"%" + searchText + "%\"");
+
+        try {
+
+            cursorWrapper.moveToFirst();
+
+            while (!cursorWrapper.isAfterLast()) {
+
+                data.add((cursorWrapper).getWord());
+                cursor.moveToNext();
+
+            }
+
+        } finally {
+
+            cursor.close();
+            cursorWrapper.close();
+
+        }
+
+        return data;
+    }
+
+
     public ArrayList<Word> getData() {
         data = new ArrayList<>();
 
-        Cursor cursor = database.query(DictionaryDBSchema.Word.NAME, null, null,null,null,null,null);
+        Cursor cursor = database.query(DictionaryDBSchema.Word.NAME, null, null, null, null, null, null);
         WordDBCursorWrapper cursorWrapper = new WordDBCursorWrapper(cursor);
 
         try {
@@ -70,8 +102,6 @@ public class Repository {
         }
 
         size = data.size();
-        Log.d("sout_count", size + "");
-
         for (int i = 0; i < size; i++)
             data.add(new Word(data.get(i).getFaWord(), data.get(i).getEnWord()));
 
@@ -84,7 +114,7 @@ public class Repository {
 
     private ContentValues getContentValues(Word word) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DictionaryDBSchema.Word.Cols.EN_WORD,word.getEnWord());
+        contentValues.put(DictionaryDBSchema.Word.Cols.EN_WORD, word.getEnWord());
         contentValues.put(DictionaryDBSchema.Word.Cols.FA_WORD, word.getFaWord());
 
         return contentValues;
