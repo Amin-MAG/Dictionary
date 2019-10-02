@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.mag.dictionary.Controller.Adapters.WordListRecycleAdapter;
 import com.mag.dictionary.Model.BiWord;
 import com.mag.dictionary.Model.Repository;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 public class MainAppFragment extends Fragment {
 
     private RecyclerView wordRecycler;
+    private TextInputEditText searchText;
 
     public static MainAppFragment newInstance() {
 
@@ -52,8 +54,11 @@ public class MainAppFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-
         wordRecycler = view.findViewById(R.id.mainAppActivity_recycler);
+        searchText = view.findViewById(R.id.mainAppFragment_searchText);
+
+        searchText.requestFocus();
+
         WordListRecycleAdapter adapter =  new WordListRecycleAdapter(Repository.getInstance(getContext()).getData());
         wordRecycler.setAdapter(adapter);
 

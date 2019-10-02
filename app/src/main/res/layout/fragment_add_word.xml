@@ -3,16 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/addWordFragment_faTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeWidth="16dp"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Persian Word"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/addWordFragment_enTextLayout"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/addWordFragment_enTextLayout"
@@ -27,10 +32,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/addWordFragment_enTextLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:boxStrokeWidth="16dp"
         android:layout_width="351dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:hint="English Word"
+        android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +58,7 @@
         android:layout_marginTop="32dp"
         android:text="@android:string/cancel"
         android:textSize="10dp"
-        app:backgroundTint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorPrimary"
         app:layout_constraintStart_toStartOf="@+id/addWordFragment_faTextLayout"
         app:layout_constraintTop_toBottomOf="@+id/addWordFragment_faTextLayout" />
 
@@ -61,7 +69,7 @@
         android:layout_marginTop="32dp"
         android:text="@string/add"
         android:textSize="10dp"
-        app:backgroundTint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="@+id/addWordFragment_faTextLayout"
         app:layout_constraintTop_toBottomOf="@+id/addWordFragment_faTextLayout" />
 
