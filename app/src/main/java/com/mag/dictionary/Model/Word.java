@@ -3,24 +3,39 @@ package com.mag.dictionary.Model;
 public class Word {
 
     private int wordId;
-    private String word;
+    private String enWord;
+    private String faWord;
 
 
-    public Word(int wordId, String word) {
+    public Word(String enWord, String faWord) {
+        this.enWord = enWord;
+        this.faWord = faWord;
+    }
+
+    public Word(int wordId, String enWord, String faWord) {
         this.wordId = wordId;
-        this.word = word;
+        this.enWord = enWord;
+        this.faWord = faWord;
     }
 
     public int getWordId() {
         return wordId;
     }
 
-    public String getWord() {
-        return word;
+    public String getEnWord() {
+        return enWord;
     }
 
-    public void setFirstWord(String firstWord) {
-        this.word = firstWord;
+    public void setEnWord(String enWord) {
+        this.enWord = enWord;
+    }
+
+    public String getFaWord() {
+        return faWord;
+    }
+
+    public void setFaWord(String faWord) {
+        this.faWord = faWord;
     }
 
 }

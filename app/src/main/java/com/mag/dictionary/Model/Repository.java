@@ -1,10 +1,15 @@
 package com.mag.dictionary.Model;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.mag.dictionary.Model.Database.DictionaryDBSchema;
+import com.mag.dictionary.Model.Database.DictionaryOpenHelper;
+import com.mag.dictionary.Model.Database.WordDBCursorWrapper;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Repository {
 
@@ -24,25 +29,57 @@ public class Repository {
     private Context context;
 
     private Repository (Context context) {
+        this.database= new DictionaryOpenHelper(context).getWritableDatabase();
         this.context = context.getApplicationContext();
     }
 
     // Word Management
 
-    private ArrayList<BiWord> data;
+    private ArrayList<Word> data;
 
-    public ArrayList<BiWord> getData() {
+    public void insertWord(Word word) {
+
+        database.insertOrThrow(DictionaryDBSchema.Word.NAME, null, getContentValues(word));
+
+    }
+
+    public ArrayList<Word> getData() {
         data = new ArrayList<>();
 
-        data.add(new BiWord("car", "ماشین"));
-        data.add(new BiWord("wash", "شستن"));
-        data.add(new BiWord("buy", "خریدن"));
-        data.add(new BiWord("sell", "فروختن"));
-        data.add(new BiWord("cry", "گریه کردن"));
-        data.add(new BiWord("love", "دوست داشتن"));
-        data.add(new BiWord("school", "مدرسه"));
-        data.add(new BiWord("radio", "رادیو"));
+        Cursor cursor = database.query(DictionaryDBSchema.Word.NAME, null, null,null,null,null,null);
+        WordDBCursorWrapper cursorWrapper = new WordDBCursorWrapper(cursor);
+
+        try {
+
+            cursorWrapper.moveToFirst();
+
+            while (!cursorWrapper.isAfterLast()) {
+
+                data.add((cursorWrapper).getWord());
+                cursor.moveToNext();
+
+            }
+
+        } finally {
+
+            cursor.close();
+            cursorWrapper.close();
+
+        }
+
+        int size = data.size();
+        for (int i = 0; i < size; i++)
+            data.add(new Word(data.get(i).getFaWord(), data.get(i).getEnWord()));
 
         return data;
     }
+
+    private ContentValues getContentValues(Word word) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(DictionaryDBSchema.Word.Cols.EN_WORD,word.getEnWord());
+        contentValues.put(DictionaryDBSchema.Word.Cols.FA_WORD, word.getFaWord());
+
+        return contentValues;
+    }
+
 }

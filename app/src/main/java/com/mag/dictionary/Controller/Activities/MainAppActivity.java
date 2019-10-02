@@ -19,6 +19,7 @@ public class MainAppActivity extends SingleFragmentActivity {
 
     private static final int REQUEST_CODE_FOR_ADD_WORD = 1001;
     private static final String ADD_WORD_FRAGMENT = "add_word_fragment";
+    public static final String TAG_MAIN_APP_FRAGMENT = "tag_main_app_fragment";
 
 
     @Override
@@ -59,7 +60,7 @@ public class MainAppActivity extends SingleFragmentActivity {
             case R.id.mainMenu_add:
 
                 AddWordFragment addWordFragment = AddWordFragment.newInstance();
-                addWordFragment.setTargetFragment(getSupportFragmentManager().findFragmentByTag("tag_main_app_fragment"), REQUEST_CODE_FOR_ADD_WORD);
+                addWordFragment.setTargetFragment(getSupportFragmentManager().findFragmentByTag(TAG_MAIN_APP_FRAGMENT), REQUEST_CODE_FOR_ADD_WORD);
 
                 addWordFragment.show(getSupportFragmentManager(), ADD_WORD_FRAGMENT);
                 return true;

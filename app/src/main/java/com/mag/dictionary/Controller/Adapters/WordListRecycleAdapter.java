@@ -1,7 +1,6 @@
 package com.mag.dictionary.Controller.Adapters;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mag.dictionary.Model.BiWord;
+import com.mag.dictionary.Model.Word;
 import com.mag.dictionary.R;
 
 import java.util.List;
@@ -18,12 +17,9 @@ import java.util.List;
 public class WordListRecycleAdapter extends RecyclerView.Adapter<WordListRecycleAdapter.WordListRecyclerViewHolder> {
 
     private Activity activity;
-    private List<BiWord> words;
+    private List<Word> words;
 
-    public WordListRecycleAdapter(List<BiWord> words) {
-        int size = words.size();
-        for (int i = 0; i < size; i++)
-            words.add(new BiWord(words.get(i).getSecondWord(), words.get(i).getFirstWord()));
+    public WordListRecycleAdapter(List<Word> words) {
         this.words = words;
     }
 
@@ -39,7 +35,7 @@ public class WordListRecycleAdapter extends RecyclerView.Adapter<WordListRecycle
 
     @Override
     public void onBindViewHolder(@NonNull WordListRecyclerViewHolder holder, int position) {
-        BiWord word = words.get(position);
+        Word word = words.get(position);
         holder.bind(word);
     }
 
@@ -61,11 +57,11 @@ public class WordListRecycleAdapter extends RecyclerView.Adapter<WordListRecycle
 
         }
 
-        protected void bind(final BiWord word) {
+        protected void bind(final Word word) {
 
 
-            wordText.setText(word.getFirstWord());
-            translatedWordText.setText(word.getSecondWord());
+            wordText.setText(word.getEnWord());
+            translatedWordText.setText(word.getFaWord());
 
         }
 

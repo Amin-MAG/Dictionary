@@ -1,4 +1,12 @@
 package com.mag.dictionary.Model.Exceptions;
 
-public class EmptyFieldException {
+import androidx.annotation.Nullable;
+
+public class EmptyFieldException extends  Exception {
+
+    @Nullable
+    @Override
+    public String getMessage() {
+        return "Field is Empty";
+    }
 }

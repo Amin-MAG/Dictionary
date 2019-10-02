@@ -21,9 +21,16 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.mag.dictionary.Model.Exceptions.EmptyFieldException;
+import com.mag.dictionary.Model.Repository;
+import com.mag.dictionary.Model.Word;
 import com.mag.dictionary.R;
+import com.mag.dictionary.Var.Constants;
 
 public class AddWordFragment extends DialogFragment {
+
+    public static final String DIALOG_ERROR = "dialog_error";
+    public static final String HAS_ERROR = "has_error";
 
 
     private TextInputEditText enWord, faWord;
@@ -94,21 +101,21 @@ public class AddWordFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
 
-//                String taskTitle = title.getText().toString();
-//                String taskDescription = description.getText().toString();
-//                Date taskDate = selectedDate;
-//
-//                try {
-//                    if (taskTitle.equals(Constants.EMPTY_STRING) || taskDescription.equals(Constants.EMPTY_STRING))
-//                        throw new EmptyFieldException();
-//                    Repository.getInstance(getContext()).addTaskForUser(Global.getOnlineUserID(),new Task(taskTitle, taskDescription, taskDate.getTime(), TaskStatus.TODO));
-//                } catch (EmptyFieldException e) {
-//                    intent.putExtra(DIALOG_ERROR,e.getMessage() );
-//                    intent.putExtra(HAS_ERROR,1 );
-//                } finally {
-//                    fragment.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);
-//                    dismiss();
-//                }
+                String englishString  = enWord.getText().toString();
+                String persianString = faWord.getText().toString();
+
+                try {
+                    if (englishString.equals(Constants.EMPTY_STRING) || persianString.equals(Constants.EMPTY_STRING))
+                        throw new EmptyFieldException();
+
+                    Repository.getInstance(getContext()).insertWord(new Word(englishString, persianString));
+                } catch (EmptyFieldException e) {
+                    intent.putExtra(DIALOG_ERROR,e.getMessage() );
+                    intent.putExtra(HAS_ERROR,1 );
+                } finally {
+                    fragment.onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);
+                    dismiss();
+                }
 
             }
         });

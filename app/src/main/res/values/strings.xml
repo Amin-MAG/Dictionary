@@ -6,6 +6,7 @@
     <string name="exit">exit</string>
     <string name="add">add</string>
     <string name="add_word">Add Word</string>
+    <string name="successfully_added">Successfully Added</string>
 
 
 </resources>
