@@ -1,6 +1,8 @@
 package com.mag.dictionary.Model;
 
-public class Word {
+import java.io.Serializable;
+
+public class Word implements Serializable {
 
     private int wordId;
     private String enWord;

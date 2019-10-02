@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mag.dictionary.Controller.Activities.MainAppActivity;
+import com.mag.dictionary.Controller.Fragments.AddWordFragment;
+import com.mag.dictionary.Controller.Fragments.EditWordFragment;
 import com.mag.dictionary.Model.Repository;
 import com.mag.dictionary.Model.Word;
 import com.mag.dictionary.R;
@@ -58,31 +61,42 @@ public class WordListRecycleAdapter extends RecyclerView.Adapter<WordListRecycle
             words = Repository.getInstance(activity).getData();
         }
         notifyDataSetChanged();
-        ((MainAppActivity) activity).updateToolbarWordCount();
+//        ((MainAppActivity) activity).updateToolbarWordCount();
     }
 
 
     public class WordListRecyclerViewHolder extends RecyclerView.ViewHolder {
 
         private TextView wordText, translatedWordText;
+        private CardView cardView;
 
         public WordListRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             wordText = itemView.findViewById(R.id.wordItemLayout_word);
             translatedWordText = itemView.findViewById(R.id.wordItemLayout_translated);
+            cardView = itemView.findViewById(R.id.layoutWordItem_cardView);
 
         }
 
         protected void bind(final Word word) {
             wordText.setText(word.getEnWord());
             translatedWordText.setText(word.getFaWord());
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    callBack.showEditDialog(word);
+                }
+            });
+
         }
 
     }
 
     public interface WordListCallBack {
         String getSearchText();
+        void showEditDialog(Word word);
     }
 
 }

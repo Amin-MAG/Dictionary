@@ -7,5 +7,8 @@
     <string name="add">add</string>
     <string name="add_word">Add Word</string>
     <string name="successfully_added">Successfully Added</string>
+    <string name="edit_word">Edit Word</string>
+    <string name="edit">Edit</string>
+    <string name="successfully_edited">Successfully Edited</string>
 
 </resources>

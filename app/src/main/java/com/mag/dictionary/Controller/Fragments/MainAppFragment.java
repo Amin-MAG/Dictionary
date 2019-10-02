@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.mag.dictionary.Controller.Adapters.WordListRecycleAdapter;
 import com.mag.dictionary.Model.Repository;
+import com.mag.dictionary.Model.Word;
 import com.mag.dictionary.R;
 import com.mag.dictionary.Util.UiUtil;
 
@@ -33,6 +34,11 @@ public class MainAppFragment extends Fragment {
     public static final String DIALOG_ERROR = "dialog_error";
     public static final String HAS_ERROR = "has_error";
     public static final String TAG_MAIN_WORD_FRAGMENT = "tag_main_word_fragment";
+    private static final int REQUEST_CODE_FOR_EDIT_WORD = 1002;
+    private static final String EDIT_WORD_FRAGMENT = "edit_word_fragment";
+    private static final String ARG_WORD = "arg_word";
+    private static final String EDIT_WORD = "edit_word";
+    private static final String ACTION_STRING = "action_string";
 
     private RecyclerView wordRecycler;
     private WordListRecycleAdapter adapter;
@@ -71,6 +77,25 @@ public class MainAppFragment extends Fragment {
                     }
                 }
 
+                break;
+
+            case REQUEST_CODE_FOR_EDIT_WORD:
+
+                if (resultCode == Activity.RESULT_OK) {
+
+                    if (data.getIntExtra(HAS_ERROR, 0) == 1) {
+                        UiUtil.showSnackbar(wordRecycler, data.getStringExtra(DIALOG_ERROR), getResources().getString(R.color.app_red));
+                    } else {
+
+                        // Update
+                        adapter.update();
+
+                        // Show snackbar
+                        UiUtil.showSnackbar(wordRecycler, getResources().getString(R.string.successfully_edited), getResources().getString(R.color.app_green_dark));
+
+                    }
+
+                }
                 break;
             default:
                 break;
@@ -116,6 +141,13 @@ public class MainAppFragment extends Fragment {
             @Override
             public String getSearchText() {
                 return searchText.getText().toString();
+            }
+
+            @Override
+            public void showEditDialog(Word word) {
+                EditWordFragment editWordFragment = EditWordFragment.newInstance(word);
+                editWordFragment.setTargetFragment(MainAppFragment.this, REQUEST_CODE_FOR_EDIT_WORD);
+                editWordFragment.show(getFragmentManager(), EDIT_WORD_FRAGMENT);
             }
         });
         wordRecycler.setAdapter(adapter);

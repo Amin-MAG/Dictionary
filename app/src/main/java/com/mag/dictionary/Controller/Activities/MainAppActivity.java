@@ -37,7 +37,7 @@ public class MainAppActivity extends SingleFragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Repository.getInstance(getApplicationContext()).getData();
+        Repository.getInstance(getApplicationContext());
 
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
@@ -62,8 +62,8 @@ public class MainAppActivity extends SingleFragmentActivity {
 
                 AddWordFragment addWordFragment = AddWordFragment.newInstance();
                 addWordFragment.setTargetFragment(getSupportFragmentManager().findFragmentByTag(TAG_MAIN_APP_FRAGMENT), REQUEST_CODE_FOR_ADD_WORD);
-
                 addWordFragment.show(getSupportFragmentManager(), ADD_WORD_FRAGMENT);
+
                 return true;
             case R.id.mainMenu_exit:
 

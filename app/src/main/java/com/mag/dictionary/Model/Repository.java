@@ -45,6 +45,11 @@ public class Repository {
 
     }
 
+
+    public void updateTaskForUser(Word selectedWord) {
+        database.update(DictionaryDBSchema.Word.NAME, getContentValues(selectedWord), DictionaryDBSchema.Word.Cols._ID + " = ?", new String[]{String.valueOf(selectedWord.getWordId())});
+    }
+
     public ArrayList<Word> getData(String searchText) {
         data = new ArrayList<>();
 
@@ -102,8 +107,6 @@ public class Repository {
         }
 
         size = data.size();
-        for (int i = 0; i < size; i++)
-            data.add(new Word(data.get(i).getFaWord(), data.get(i).getEnWord()));
 
         return data;
     }
