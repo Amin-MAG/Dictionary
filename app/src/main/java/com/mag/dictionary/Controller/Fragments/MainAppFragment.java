@@ -3,6 +3,7 @@ package com.mag.dictionary.Controller.Fragments;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -45,6 +46,8 @@ public class MainAppFragment extends Fragment {
     private TextInputEditText searchText;
     private LinearLayout mainLayout;
 
+    private MainAppFragmentCallback mainAppFragmentCallback;
+
     public static MainAppFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -58,6 +61,22 @@ public class MainAppFragment extends Fragment {
     public MainAppFragment() {
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof MainAppFragmentCallback) {
+            mainAppFragmentCallback = (MainAppFragmentCallback) context;
+        }
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        mainAppFragmentCallback = null;
+    }
 
     @SuppressLint("ResourceType")
     @Override
@@ -149,10 +168,18 @@ public class MainAppFragment extends Fragment {
                 editWordFragment.setTargetFragment(MainAppFragment.this, REQUEST_CODE_FOR_EDIT_WORD);
                 editWordFragment.show(getFragmentManager(), EDIT_WORD_FRAGMENT);
             }
+
+            @Override
+            public void updateCount() {
+                mainAppFragmentCallback.updateCount();
+            }
         });
         wordRecycler.setAdapter(adapter);
 
     }
 
+    public interface MainAppFragmentCallback {
+        void updateCount();
+    }
 
 }

@@ -16,7 +16,7 @@ import com.mag.dictionary.Controller.Fragments.MainAppFragment;
 import com.mag.dictionary.Model.Repository;
 import com.mag.dictionary.R;
 
-public class MainAppActivity extends SingleFragmentActivity {
+public class MainAppActivity extends SingleFragmentActivity implements MainAppFragment.MainAppFragmentCallback {
 
     private static final int REQUEST_CODE_FOR_ADD_WORD = 1001;
     private static final String ADD_WORD_FRAGMENT = "add_word_fragment";
@@ -43,7 +43,7 @@ public class MainAppActivity extends SingleFragmentActivity {
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.layout_app_custom_toolbar);
 
-        updateToolbarWordCount();
+        updateCount();
 
     }
 
@@ -76,7 +76,8 @@ public class MainAppActivity extends SingleFragmentActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void updateToolbarWordCount() {
+    @Override
+    public void updateCount() {
         ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.toolbar_item_count)).setText(getString(R.string.items, Repository.getInstance(getApplicationContext()).getSize()));
     }
 

@@ -1,8 +1,6 @@
 package com.mag.dictionary.Controller.Adapters;
 
 import android.app.Activity;
-import android.content.Context;
-import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.mag.dictionary.Controller.Activities.MainAppActivity;
-import com.mag.dictionary.Controller.Fragments.AddWordFragment;
-import com.mag.dictionary.Controller.Fragments.EditWordFragment;
 import com.mag.dictionary.Model.Repository;
 import com.mag.dictionary.Model.Word;
 import com.mag.dictionary.R;
@@ -61,7 +56,7 @@ public class WordListRecycleAdapter extends RecyclerView.Adapter<WordListRecycle
             words = Repository.getInstance(activity).getData();
         }
         notifyDataSetChanged();
-//        ((MainAppActivity) activity).updateToolbarWordCount();
+        callBack.updateCount();
     }
 
 
@@ -96,7 +91,10 @@ public class WordListRecycleAdapter extends RecyclerView.Adapter<WordListRecycle
 
     public interface WordListCallBack {
         String getSearchText();
+
         void showEditDialog(Word word);
+
+        void updateCount();
     }
 
 }

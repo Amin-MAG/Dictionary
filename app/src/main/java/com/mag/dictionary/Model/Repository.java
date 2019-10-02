@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.mag.dictionary.Model.Database.DictionaryDBSchema;
 import com.mag.dictionary.Model.Database.DictionaryOpenHelper;
@@ -37,7 +36,6 @@ public class Repository {
     // Word Management
 
     private ArrayList<Word> data;
-    private int size;
 
     public void insertWord(Word word) {
 
@@ -57,8 +55,6 @@ public class Repository {
                 DictionaryDBSchema.Word.Cols.EN_WORD + " LIKE \"" + searchText + "%\" OR " + DictionaryDBSchema.Word.Cols.FA_WORD + " LIKE \"" + searchText + "%\"",
                 null, null, null, null);
         WordDBCursorWrapper cursorWrapper = new WordDBCursorWrapper(cursor);
-
-        Log.d("SpecialLog", DictionaryDBSchema.Word.Cols.EN_WORD + " LIKE \"%" + searchText + "\" OR " + DictionaryDBSchema.Word.Cols.FA_WORD + " LIKE \"%" + searchText + "%\"");
 
         try {
 
@@ -106,13 +102,11 @@ public class Repository {
 
         }
 
-        size = data.size();
-
         return data;
     }
 
     public int getSize() {
-        return size;
+        return database.query(DictionaryDBSchema.Word.NAME, null, null, null, null, null, null).getCount();
     }
 
     private ContentValues getContentValues(Word word) {

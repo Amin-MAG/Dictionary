@@ -45,7 +45,8 @@
             android:layout_marginRight="16dp"
             android:text="English Word"
             android:textColor="#FFFFFF"
-            android:textSize="28dp"
+            android:textSize="24dp"
+            app:fontFamily="@font/merienda"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
