@@ -5,16 +5,16 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.mag.dictionary.Controller.Adapters.WordListRecycleAdapter;
@@ -31,10 +31,9 @@ public class MainAppFragment extends Fragment {
     private static final int REQUEST_CODE_FOR_ADD_WORD = 1001;
     public static final String DIALOG_ERROR = "dialog_error";
     public static final String HAS_ERROR = "has_error";
-    private static final String ADD_WORD_FRAGMENT = "add_word_fragment";
-    public static final String TAG_MAIN_APP_FRAGMENT = "tag_main_app_fragment";
 
     private RecyclerView wordRecycler;
+    private WordListRecycleAdapter adapter;
     private TextInputEditText searchText;
     private LinearLayout mainLayout;
 
@@ -63,9 +62,10 @@ public class MainAppFragment extends Fragment {
 
                 if (resultCode == Activity.RESULT_OK) {
                     if (data.getIntExtra(HAS_ERROR, 0) == 1)
-                        UiUtil.showSnackbar(mainLayout, data.getStringExtra(DIALOG_ERROR), getResources().getString(R.color.colorAccent));
+                        UiUtil.showSnackbar(mainLayout, data.getStringExtra(DIALOG_ERROR), getResources().getString(R.color.app_red));
                     else {
-                        UiUtil.showSnackbar(mainLayout, getResources().getString(R.string.successfully_added), getResources().getString(R.color.colorPrimary));
+                        adapter.update();
+                        UiUtil.showSnackbar(mainLayout, getResources().getString(R.string.successfully_added), getResources().getString(R.color.app_green_dark));
                     }
                 }
 
@@ -77,7 +77,7 @@ public class MainAppFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_main_app, container, false);
     }
 
@@ -92,7 +92,7 @@ public class MainAppFragment extends Fragment {
 
         searchText.requestFocus();
 
-        WordListRecycleAdapter adapter =  new WordListRecycleAdapter(Repository.getInstance(getContext()).getData());
+        adapter = new WordListRecycleAdapter(Repository.getInstance(getContext()).getData());
         wordRecycler.setAdapter(adapter);
 
     }

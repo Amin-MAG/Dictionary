@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.mag.dictionary.Model.Database.DictionaryDBSchema;
 import com.mag.dictionary.Model.Database.DictionaryOpenHelper;
@@ -36,6 +37,7 @@ public class Repository {
     // Word Management
 
     private ArrayList<Word> data;
+    private int size;
 
     public void insertWord(Word word) {
 
@@ -67,11 +69,17 @@ public class Repository {
 
         }
 
-        int size = data.size();
+        size = data.size();
+        Log.d("sout_count", size + "");
+
         for (int i = 0; i < size; i++)
             data.add(new Word(data.get(i).getFaWord(), data.get(i).getEnWord()));
 
         return data;
+    }
+
+    public int getSize() {
+        return size;
     }
 
     private ContentValues getContentValues(Word word) {

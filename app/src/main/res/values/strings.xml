@@ -2,11 +2,10 @@
 
     <string name="app_name">Dictionary</string>
 
-    <string name="items">10 item(s)</string>
+    <string name="items">%1$d item(s)</string>
     <string name="exit">exit</string>
     <string name="add">add</string>
     <string name="add_word">Add Word</string>
     <string name="successfully_added">Successfully Added</string>
-
 
 </resources>

@@ -1,18 +1,19 @@
 package com.mag.dictionary.Controller.Activities;
 
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-
 import com.mag.dictionary.Controller.Fragments.AddWordFragment;
 import com.mag.dictionary.Controller.Fragments.MainAppFragment;
+import com.mag.dictionary.Model.Repository;
 import com.mag.dictionary.R;
 
 public class MainAppActivity extends SingleFragmentActivity {
@@ -36,15 +37,15 @@ public class MainAppActivity extends SingleFragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Repository.getInstance(getApplicationContext()).getData();
 
         this.getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.layout.layout_app_custom_toolbar);
-//        ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.userInfoFragment_username)).setText(Global.getOnlineUsername());
 
+        updateToolbarWordCount();
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -73,6 +74,10 @@ public class MainAppActivity extends SingleFragmentActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void updateToolbarWordCount() {
+        ((TextView) getSupportActionBar().getCustomView().findViewById(R.id.toolbar_item_count)).setText(getString(R.string.items, Repository.getInstance(getApplicationContext()).getSize()));
     }
 
 }
