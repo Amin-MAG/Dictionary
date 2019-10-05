@@ -11,11 +11,13 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ShareCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -38,7 +40,7 @@ public class EditWordFragment extends DialogFragment {
 
 
     private TextInputEditText enWord, faWord;
-    private MaterialButton edit, cancel, delete;
+    private MaterialButton edit, cancel, delete, share;
 
 
     private Word selectedWord;
@@ -108,6 +110,7 @@ public class EditWordFragment extends DialogFragment {
         delete = view.findViewById(R.id.editTaskFragment_delete);
         enWord = view.findViewById(R.id.editWordFragment_enText);
         faWord = view.findViewById(R.id.editWordFragment_faText);
+        share = view.findViewById(R.id.editTaskFragment_share);
     }
 
     private void setText() {
@@ -162,6 +165,22 @@ public class EditWordFragment extends DialogFragment {
             }
         });
 
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent shareIntent = ShareCompat.IntentBuilder
+                        .from(getActivity())
+                        .setType("text/plain")
+                        .setText(getWordInfo())
+                        .getIntent();
+
+                if (shareIntent.resolveActivity(getActivity().getPackageManager()) != null)
+                    startActivity(shareIntent);
+
+            }
+        });
+
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -171,6 +190,11 @@ public class EditWordFragment extends DialogFragment {
 
             }
         });
+    }
+
+    @SuppressLint("ResourceType")
+    private CharSequence getWordInfo() {
+        return getString(R.string.share_send_sentence, selectedWord.getEnWord(), selectedWord.getFaWord());
     }
 
 }

@@ -3,45 +3,48 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingBottom="16dp"
+    android:orientation="vertical">
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/editTaskFragment_cancel"
         android:layout_width="130dp"
         android:layout_height="48dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="20dp"
         android:text="@android:string/cancel"
         android:textSize="10dp"
         app:backgroundTint="@color/colorPrimary"
         app:icon="@drawable/ic_cancel"
-        app:layout_constraintStart_toStartOf="@+id/editWordFragment_faTextLayout"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editWordFragment_faTextLayout" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/editTaskFragment_delete"
         android:layout_width="130dp"
         android:layout_height="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="24dp"
         android:text="@string/delete"
         android:textSize="10dp"
         app:backgroundTint="@color/colorPrimary"
         app:icon="@drawable/ic_delete"
-        app:layout_constraintEnd_toEndOf="@+id/editTaskFragment_edit"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTaskFragment_edit" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/editTaskFragment_share"
         android:layout_width="130dp"
         android:layout_height="49dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="12dp"
         android:text="@string/share"
         android:textColor="@color/white"
         android:textSize="10dp"
         app:backgroundTint="@color/colorPrimary"
         app:icon="@drawable/ic_share"
-        app:layout_constraintStart_toStartOf="@+id/editTaskFragment_cancel"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTaskFragment_cancel" />
 
     <com.google.android.material.button.MaterialButton
@@ -49,31 +52,34 @@
         android:layout_width="130dp"
         android:layout_height="48dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="24dp"
         android:text="@string/edit"
         android:textSize="10dp"
         app:backgroundTint="@color/colorPrimary"
         app:icon="@drawable/ic_edit"
-        app:layout_constraintEnd_toEndOf="@+id/editWordFragment_faTextLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editWordFragment_faTextLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editWordFragment_faTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="350dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
         android:hint="Persian Word"
         android:textColorHint="@color/white"
         app:boxStrokeWidth="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/editWordFragment_enTextLayout"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editWordFragment_enTextLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editWordFragment_enTextLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editWordFragment_faText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="62dp"
             android:textColor="@color/white" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -81,8 +87,11 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/editWordFragment_enTextLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="351dp"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
         android:hint="English Word"
         android:textColorHint="@color/white"
         app:boxStrokeWidth="16dp"
@@ -93,7 +102,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editWordFragment_enText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="62dp"
             android:textColor="@color/white" />
 
     </com.google.android.material.textfield.TextInputLayout>
