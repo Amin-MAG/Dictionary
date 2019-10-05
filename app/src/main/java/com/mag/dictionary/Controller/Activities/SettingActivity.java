@@ -1,24 +1,29 @@
 package com.mag.dictionary.Controller.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 
-import com.mag.dictionary.R;
+import androidx.fragment.app.Fragment;
+
+import com.mag.dictionary.Controller.Fragments.SettingFragment;
 
 public class SettingActivity extends SingleFragmentActivity {
 
+    public static final String TAG_SETTING_FRAGMENT = "tag_Setting_fragment";
+
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, SettingActivity.class);
+        return intent;
+    }
+
     @Override
     public Fragment getFragment() {
-        return null;
+        return SettingFragment.newInstance();
     }
 
     @Override
     public String getTagName() {
-        return null;
+        return TAG_SETTING_FRAGMENT;
     }
 
 }

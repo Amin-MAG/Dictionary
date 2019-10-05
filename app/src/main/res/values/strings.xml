@@ -14,5 +14,6 @@
     <string name="successfully_deleted">Successfully Deleted</string>
     <string name="share">Share</string>
     <string name="share_send_sentence">The Word \"%1$s\" means \"%2$s\"</string>
+    <string name="settings">Settings</string>
 
 </resources>

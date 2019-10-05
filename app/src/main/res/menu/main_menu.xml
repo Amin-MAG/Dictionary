@@ -8,10 +8,10 @@
         android:title="@string/add"
         app:showAsAction="ifRoom"/>
 
-<!--    <item android:id="@+id/mainMenu_delete"-->
-<!--        android:icon="@drawable/ic_delete"-->
-<!--        android:title="@string/delete"-->
-<!--        app:showAsAction="ifRoom"/>-->
+    <item android:id="@+id/mainMenu_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings"
+        app:showAsAction="ifRoom"/>
 
     <item android:id="@+id/mainMenu_exit"
         android:icon="@drawable/ic_close"

@@ -65,6 +65,11 @@ public class MainAppActivity extends SingleFragmentActivity implements MainAppFr
                 addWordFragment.show(getSupportFragmentManager(), ADD_WORD_FRAGMENT);
 
                 return true;
+            case R.id.mainMenu_settings:
+
+                startActivity(SettingActivity.newIntent(this));
+
+                return true;
             case R.id.mainMenu_exit:
 
                 finish();

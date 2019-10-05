@@ -3,7 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/darker"
     tools:context=".Controller.Fragments.SettingFragment">
 
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="366dp"
+        android:layout_height="448dp"
+        android:text="TextView"
+        android:textColor="#00FFFFFF" />
 </FrameLayout>
